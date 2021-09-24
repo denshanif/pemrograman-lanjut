@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 
+//Deklarasi Struct
 struct datamhs {
 	char npm[20];
 	char nama[20];
@@ -8,8 +9,10 @@ struct datamhs {
 	float ipk;
 } mhs[80];
 
-int indexTerakhir = 0;
+// Deklarasi integer indexBaru untuk menampung index jumlah data
+int indexBaru = 0;
 
+// Deklarasi fungsi
 void tambahData();
 void tampilData();
 void hapusData();
@@ -18,16 +21,18 @@ void editData();
 int cariIndex(char npm[20]);
 
 int main() {
-	int menu;
-	char kembali;
+	int menu; // Integer menu untuk menampung hasil pilihan dari menu
+	char kembali; // Char kembali untuk menampung input kembali ke menu
 	
-	printf("==============================================\n");
-	printf("====== PROGRAM MANAJEMEN DATA MAHASISWA ======\n");
-	printf("======== HANIF AL FATHONI 20081010001 ========\n");
-	printf("==============================================\n");
-	
+	// Do While untuk pengulangan menu pilihan
 	do {
-		system("clear");
+		system("clear"); // System clear untuk membersihkan terminal
+		// Output judul program
+		printf("==============================================\n");
+		printf("====== PROGRAM MANAJEMEN DATA MAHASISWA ======\n");
+		printf("======== HANIF AL FATHONI 20081010001 ========\n");
+		printf("==============================================\n");
+		// Menu pilihan
 		printf("\n=== SILAHKAN PILIH MENU YANG DI BAWAH INI ===\n");
 		printf("1. TAMBAH DATA MAHASISWA\n");
 		printf("2. TAMPILKAN DATA MAHASISWA\n");
@@ -35,11 +40,13 @@ int main() {
 		printf("4. CARI DATA MAHASISWA\n");
 		printf("5. EDIT DATA MAHASISWA\n");
 		
+		// Input pilihan menu dari user
 		printf("Masukkan pilihan anda: ");
 		scanf("%d", &menu);
 		
 		printf("\n");
 		
+		// Switch case untuk masing-masing menu
 		switch(menu) {
 			case 1 :
 				tambahData();
@@ -68,15 +75,18 @@ int main() {
 		}
 		printf("\n");
 		
+		// Pilihan kembali ke menu awal
 		printf("Ingin kembali ke menu pilihan? (Y/T): ");
 		scanf("%c", &kembali); scanf("%c", &kembali);
 	}
 	while(kembali == 'y' || kembali == 'Y');
 }
 
+// Deklarasi fungsi untuk pengecekan ketersediaan npm
 bool cekNPM(char npm[20], int index) {
 	int i;
-	for (i = 0; i < indexTerakhir; i++) {
+	for (i = 0; i < indexBaru; i++) {
+		// Pengecekan NPM
 		if (index != i && strcmp(npm, mhs[i].npm) == 0) {
 			return false;
 		}
@@ -84,13 +94,16 @@ bool cekNPM(char npm[20], int index) {
 	return true;
 }
 
+// Pemanggilan fungsi untuk penginputan data mahasiswa
 void inputData(int index) {
 	printf("\n\n============== Input Data Mahasiswa ==============\n");\
 	
+	// Input NPM
 	printf("Masukkan NPM mahasiswa: ");
 	fflush(stdin);
 	scanf("%s", &mhs[index].npm);
 	
+	// Pengecekan NPM dengan pemanggilan fungsi cekNPM
 	if (!cekNPM(mhs[index].npm, index)) {
 		printf("NPM %s telah ada, silahkan masukkan npm lain: ", mhs[index].npm);
 		inputData(index);
@@ -112,16 +125,20 @@ void inputData(int index) {
 	}
 }
 
+// Pemanggilan fungsi untuk penambahan data mahasiswa 
 void tambahData() {
-	inputData(indexTerakhir);
-	indexTerakhir++;
+	// Setiap pemanggilan fungsi input data index akan ditambahkan
+	inputData(indexBaru);
+	indexBaru++;
 }
 
+
+// Pemanggilan fungsi untuk mengetahui keberadaan data pada array
 int cariIndex(char npm[20]) {
 	int i;
 	int index = -1;
 	
-	for (i = 0; i < indexTerakhir && index < 0; i++) {
+	for (i = 0; i < indexBaru && index < 0; i++) {
 		if (strcmp(mhs[i].npm, npm) == 0) {
 			index = i;
 		}
@@ -129,12 +146,14 @@ int cariIndex(char npm[20]) {
 	return index;
 }
 
+// Pemanggilan fungsi untuk menampilkan seluruh data mahasiswa
 void tampilData() {
 	int i;
 	
 	printf("======================= Daftar Data Mahasiswa =======================\n\n");
 	
-	for(i = 0; i < indexTerakhir; i++) {
+	// Data ditampilkan menggunakan looping berdasarkan banyaknya index/data yang tersimpan di array
+	for(i = 0; i < indexBaru; i++) {
 		printf("\n=== DATA MAHASISWA KE-%d ===\n", i+1);
 		printf("NPM Mahasiswa : %s \n", mhs[i].npm);
 		printf("Nama Mahasiswa : %s \n", mhs[i].nama);
@@ -143,19 +162,20 @@ void tampilData() {
 	}
 }
 
+// Deklarasi fungsi untuk mekanisme hapus data pada sebuah index
 void hapus(int index) {
 	int i, tempat = 0;
 	
-	for (i = 0; i < indexTerakhir; i++) {
+	for (i = 0; i < indexBaru; i++) {
 		if (i != index) {
 			mhs[tempat] = mhs[i];
 			tempat++;
 		}
 	}
-	indexTerakhir--;
+	indexBaru--;
 	
 	printf("\n=== Data mahasiswa setelah dihapus ===\n");
-	for(i = 0; i < indexTerakhir; i++) {
+	for(i = 0; i < indexBaru; i++) {
 		printf("\n=== DATA MAHASISWA KE-%d ===\n", i+1);
 		printf("NPM Mahasiswa : %s \n", mhs[i].npm);
 		printf("Nama Mahasiswa : %s \n", mhs[i].nama);
@@ -164,12 +184,14 @@ void hapus(int index) {
 	}
 }
 
+// Pemanggilan fungsi untuk menghapus data berdasarkan NPM mahasiswa
 void hapusData() {
 	char npm[20];
 	
 	printf("Masukkan NPM mahasiswa yang datanya ingin dihapus: ");
 	scanf("%s", &npm);
 	
+	// Pencocokan NPM inputan dengan NPM yang sudah ada sebelum dilakukan penghapusan
 	int index = cariIndex(npm);
 	if (index < 0) {
 		printf("Data tidak ditemukan\n");
@@ -180,6 +202,7 @@ void hapusData() {
 	}
 }
 
+// Pemanggilan fungsi untuk mencari data mahasiswa berdasarkan NPM atau nama mahasiswa
 void cariData() {
 	char cari[20];
 	
@@ -188,7 +211,8 @@ void cariData() {
 	
 	int i;
 	
-	for(i = 0; i < indexTerakhir; i++) {
+	// Dilakukan pengecekan nama/NPM pada setiap index/data
+	for(i = 0; i < indexBaru; i++) {
 		if (strcmp(mhs[i].npm, cari) == 0 || strcmp(mhs[i].nama, cari) == 0) {
 			printf("NPM Mahasiswa : %s \n", mhs[i].npm);
 			printf("Nama Mahasiswa : %s \n", mhs[i].nama);
@@ -201,12 +225,15 @@ void cariData() {
 	printf("Data tidak ditemukan\n");
 }
 
+
+// Pemanggilan fungsi untuk mengubah data yang sudah ada
 void editData() {
 	char npm[20];
 	
 	printf("Masukkan NPM mahasiswa yang datanya ingin diedit: ");
 	scanf("%s", &npm);
 	
+	// Dilakukan pengecekan apakah NPM telah ada pada data
 	int index = cariIndex(npm);
 	if (index < 0) {
 		printf("Data tidak ditemukan\n");
