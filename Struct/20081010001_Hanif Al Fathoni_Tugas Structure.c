@@ -1,12 +1,19 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-//Deklarasi Struct
+// Deklarasi Struct
+typedef struct akademik {
+	int semester;
+	float ipk;
+} akademik;
+
+// Deklarasi Struct
 struct datamhs {
 	char npm[20];
 	char nama[20];
+	char fakultas[20];
 	char prodi[20];
-	float ipk;
+	akademik akademik;
 } mhs[80];
 
 // Deklarasi integer indexBaru untuk menampung index jumlah data
@@ -116,10 +123,18 @@ void inputData(int index) {
 		printf("Masukkan program studi mahasiswa: ");
 		fflush(stdin);
 		scanf("%[^\n]", mhs[index].prodi);
+		
+		printf("Masukkan fakultas mahasiswa: ");
+		fflush(stdin);
+		scanf("%[^\n]", mhs[index].fakultas);
+		
+		printf("Masukkan semester mahasiswa: ");
+		fflush(stdin);
+		scanf("%d", &mhs[index].akademik.semester);
 			
 		printf("Masukkan ipk mahasiswa: ");
 		fflush(stdin);
-		scanf("%f", &mhs[index].ipk);
+		scanf("%f", &mhs[index].akademik.ipk);
 			
 		printf("\n");
 	}
@@ -158,7 +173,9 @@ void tampilData() {
 		printf("NPM Mahasiswa : %s \n", mhs[i].npm);
 		printf("Nama Mahasiswa : %s \n", mhs[i].nama);
 		printf("Program Studi Mahasiswa : %s \n", mhs[i].prodi);
-		printf("IPK Mahasiswa : %f \n", mhs[i].ipk);
+		printf("Fakultas Mahasiswa : %s \n", mhs[i].fakultas);
+		printf("Semester Mahasiswa : %d \n", mhs[i].akademik.semester);
+		printf("IPK Mahasiswa : %f \n", mhs[i].akademik.ipk);
 	}
 }
 
@@ -180,7 +197,9 @@ void hapus(int index) {
 		printf("NPM Mahasiswa : %s \n", mhs[i].npm);
 		printf("Nama Mahasiswa : %s \n", mhs[i].nama);
 		printf("Program Studi Mahasiswa : %s \n", mhs[i].prodi);
-		printf("IPK Mahasiswa : %f \n", mhs[i].ipk);
+		printf("Fakultas Mahasiswa : %s \n", mhs[i].fakultas);
+		printf("Semester Mahasiswa : %d \n", mhs[i].akademik.semester);
+		printf("IPK Mahasiswa : %f \n", mhs[i].akademik.ipk);
 	}
 }
 
@@ -217,7 +236,9 @@ void cariData() {
 			printf("NPM Mahasiswa : %s \n", mhs[i].npm);
 			printf("Nama Mahasiswa : %s \n", mhs[i].nama);
 			printf("Program Studi Mahasiswa : %s \n", mhs[i].prodi);
-			printf("IPK Mahasiswa : %f \n", mhs[i].ipk);
+			printf("Fakultas Mahasiswa : %s \n", mhs[i].fakultas);
+			printf("Semester Mahasiswa : %d \n", mhs[i].akademik.semester);
+			printf("IPK Mahasiswa : %f \n", mhs[i].akademik.ipk);
 			
 			return ;
 		}
