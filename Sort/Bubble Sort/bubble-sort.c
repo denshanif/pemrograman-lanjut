@@ -2,7 +2,7 @@
 
 int main()
 {
-	int array[100] = {22, 10, 15, 3, 8 , 2}, n = 6, i, j, tukar;
+	int array[6] = {22, 10, 15, 3, 8 , 2}, n = 6, i, j, tukar;
 
 	// Bubble sort ascending
 	for (i = 0 ; i < n - 1; i++)
