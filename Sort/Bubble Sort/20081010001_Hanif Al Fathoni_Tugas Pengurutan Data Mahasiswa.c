@@ -276,8 +276,9 @@ void editData() {
 void tampilDataUrut() {
 	int i;
 	
+	printf("NPM\tNAMA\n\n");
+	
 	for(i = 0; i < indexBaru; i++) {
-		printf("NPM\tNAMA\n");
 		printf("%s\t%s\n", mhs[i].npm, mhs[i].nama);
 	}
 }
