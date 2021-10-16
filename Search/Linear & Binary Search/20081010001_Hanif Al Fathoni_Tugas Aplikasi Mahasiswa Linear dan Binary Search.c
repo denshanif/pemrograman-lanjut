@@ -251,38 +251,6 @@ void hapusData() {
 	}
 }
 
-// Pemanggilan fungsi untuk mencari data mahasiswa berdasarkan NPM atau nama mahasiswa secara linear search
-void cariDataLinear() {
-    int i, flag = 0;
-    char cari[20];
-
-    printf("==================== Pencarian Data Mahasiswa Linear Search ====================\n\n");
-
-	printf("Masukkan nama atau NPM mahasiswa yang datanya ingin dicari: ");
-	scanf("%s", &cari);
-
-	// Dilakukan pengecekan nama/NPM pada setiap index/data
-	for(i = 0; i < indexBaru; i++) {
-		if (strcmp(mhs[i].npm, cari) == 0 || strcmp(mhs[i].nama, cari) == 0) {
-            flag = 1;
-
-            break;
-		}
-	}
-	if (flag == 1) {
-        printf("Data mahasiswa ditemukan!\n\n");
-        printf("NPM Mahasiswa : %s \n", mhs[i].npm);
-        printf("Nama Mahasiswa : %s \n", mhs[i].nama);
-        printf("Program Studi Mahasiswa : %s \n", mhs[i].prodi);
-        printf("Fakultas Mahasiswa : %s \n", mhs[i].fakultas);
-        printf("Semester Mahasiswa : %d \n", mhs[i].akademik.semester);
-        printf("IPK Mahasiswa : %f \n", mhs[i].akademik.ipk);
-	}
-	else {
-        printf("Data mahasiswa tidak ada! \n");
-	}
-}
-
 // Pemanggilan fungsi untuk mengubah data yang sudah ada
 void editData() {
 	char npm[20];
@@ -682,96 +650,46 @@ void urutInsertion() {
 	}
 }
 
-// Deklarasi fungsi pencarian menurut nama mahasiswa dengan binary search
-void binaryNamaAscen() {
+// Pemanggilan fungsi untuk mencari data mahasiswa berdasarkan NPM atau nama mahasiswa secara linear search
+void cariDataLinear() {
+    int i, flag = 0;
     char cari[20];
-    int kiri, kanan, tengah;
 
-    namaInsertionAscen();
+    printf("==================== Pencarian Data Mahasiswa Linear Search ====================\n\n");
 
-    printf("Masukkan Nama mahasiswa yang datanya ingin dicari: ");
+	printf("Masukkan nama atau NPM mahasiswa yang datanya ingin dicari: ");
 	scanf("%s", &cari);
 
-	kiri = 0;
-    kanan = indexBaru - 1;
-
-    int flag = 0;
-
-	while (kiri <= kanan && flag == 0) {
-        tengah = (kiri + kanan) / 2;
-        if (strcmp(mhs[tengah].nama, cari) == 0) {
+	// Dilakukan pengecekan nama/NPM pada setiap index/data
+	for(i = 0; i < indexBaru; i++) {
+		if (strcmp(mhs[i].npm, cari) == 0 || strcmp(mhs[i].nama, cari) == 0) {
             flag = 1;
-            break;
-        }
-        else if (strcmp(cari, mhs[tengah].nama) < 0) {
-            kanan = tengah -1;
-        }
-        else
-            kiri = tengah + 1;
-	}
 
+            break;
+		}
+	}
 	if (flag == 1) {
         printf("Data mahasiswa ditemukan!\n\n");
-        printf("NPM Mahasiswa : %s \n", mhs[tengah].npm);
-        printf("Nama Mahasiswa : %s \n", mhs[tengah].nama);
-        printf("Program Studi Mahasiswa : %s \n", mhs[tengah].prodi);
-        printf("Fakultas Mahasiswa : %s \n", mhs[tengah].fakultas);
-        printf("Semester Mahasiswa : %d \n", mhs[tengah].akademik.semester);
-        printf("IPK Mahasiswa : %f \n", mhs[tengah].akademik.ipk);
+        printf("NPM Mahasiswa : %s \n", mhs[i].npm);
+        printf("Nama Mahasiswa : %s \n", mhs[i].nama);
+        printf("Program Studi Mahasiswa : %s \n", mhs[i].prodi);
+        printf("Fakultas Mahasiswa : %s \n", mhs[i].fakultas);
+        printf("Semester Mahasiswa : %d \n", mhs[i].akademik.semester);
+        printf("IPK Mahasiswa : %f \n", mhs[i].akademik.ipk);
 	}
 	else {
         printf("Data mahasiswa tidak ada! \n");
 	}
 }
 
-// Deklarasi fungsi pencarian menurut npm mahasiswa dengan binary search
-void binaryNamaDescen() {
-    char cari[20];
-    int kiri, kanan, tengah;
-
-    namaInsertionDescen();
-
-    printf("Masukkan Nama mahasiswa yang datanya ingin dicari: ");
-	scanf("%s", &cari);
-
-	kiri = 0;
-    kanan = indexBaru - 1;
-
-    int flag = 0;
-
-	while (kiri <= kanan && flag == 0) {
-        tengah = (kiri + kanan) / 2;
-        if (strcmp(mhs[tengah].nama, cari) == 0) {
-            flag = 1;
-            break;
-        }
-        else if (strcmp(cari, mhs[tengah].nama) > 0) {
-            kanan = tengah -1;
-        }
-        else
-            kiri = tengah + 1;
-	}
-
-	if (flag == 1) {
-        printf("Data mahasiswa ditemukan!\n\n");
-        printf("NPM Mahasiswa : %s \n", mhs[tengah].npm);
-        printf("Nama Mahasiswa : %s \n", mhs[tengah].nama);
-        printf("Program Studi Mahasiswa : %s \n", mhs[tengah].prodi);
-        printf("Fakultas Mahasiswa : %s \n", mhs[tengah].fakultas);
-        printf("Semester Mahasiswa : %d \n", mhs[tengah].akademik.semester);
-        printf("IPK Mahasiswa : %f \n", mhs[tengah].akademik.ipk);
-	}
-	else {
-        printf("Data mahasiswa tidak ada! \n");
-	}
-}
-
+// Deklarasi fungsi pencarian menurut npm mahasiswa dengan binary search urutan ascending
 void binaryNPMAscen() {
     char cari[20];
-    int kiri, kanan, tengah;
+    int kiri, kanan, tengah; // Deklarasi variabel untuk binary search
 
-    npmInsertionAscen();
+    npmInsertionAscen(); // Pemanggilan fungsi pengurutan npm ascending
 
+    // Input keyword npm yang ingin dicari
     printf("Masukkan NPM mahasiswa yang datanya ingin dicari: ");
 	scanf("%s", &cari);
 
@@ -780,6 +698,7 @@ void binaryNPMAscen() {
 
     int flag = 0;
 
+    // Looping binary search
 	while (kiri <= kanan && flag == 0) {
         tengah = (kiri + kanan) / 2;
         if (strcmp(mhs[tengah].npm, cari) == 0) {
@@ -793,6 +712,7 @@ void binaryNPMAscen() {
             kiri = tengah + 1;
 	}
 
+	// Pengecekan apakah flag sudah terpenuhi (data sudah ketemu)
 	if (flag == 1) {
         printf("Data mahasiswa ditemukan!\n\n");
         printf("NPM Mahasiswa : %s \n", mhs[tengah].npm);
@@ -807,12 +727,14 @@ void binaryNPMAscen() {
 	}
 }
 
+// Deklarasi fungsi pencarian menurut npm mahasiswa dengan binary search urutan descending
 void binaryNPMDescen() {
     char cari[20];
-    int kiri, kanan, tengah;
+    int kiri, kanan, tengah; // Deklarasi variabel untuk binary search
 
-    npmInsertionDescen();
+    npmInsertionDescen(); // Pemanggilan fungsi pengurutan npm descending
 
+    // Input keyword npm yang ingin dicari
     printf("Masukkan NPM mahasiswa yang datanya ingin dicari: ");
 	scanf("%s", &cari);
 
@@ -821,6 +743,7 @@ void binaryNPMDescen() {
 
     int flag = 0;
 
+    // Looping binary search
 	while (kiri <= kanan && flag == 0) {
         tengah = (kiri + kanan) / 2;
         if (strcmp(mhs[tengah].npm, cari) == 0) {
@@ -834,6 +757,97 @@ void binaryNPMDescen() {
             kiri = tengah + 1;
 	}
 
+	// Pengecekan apakah flag sudah terpenuhi (data sudah ketemu)
+	if (flag == 1) {
+        printf("Data mahasiswa ditemukan!\n\n");
+        printf("NPM Mahasiswa : %s \n", mhs[tengah].npm);
+        printf("Nama Mahasiswa : %s \n", mhs[tengah].nama);
+        printf("Program Studi Mahasiswa : %s \n", mhs[tengah].prodi);
+        printf("Fakultas Mahasiswa : %s \n", mhs[tengah].fakultas);
+        printf("Semester Mahasiswa : %d \n", mhs[tengah].akademik.semester);
+        printf("IPK Mahasiswa : %f \n", mhs[tengah].akademik.ipk);
+	}
+	else {
+        printf("Data mahasiswa tidak ada! \n");
+	}
+}
+
+// Deklarasi fungsi pencarian menurut nama mahasiswa dengan binary search urutan ascending
+void binaryNamaAscen() {
+    char cari[20];
+    int kiri, kanan, tengah; // Deklarasi variabel untuk binary search
+
+    namaInsertionAscen(); // Pemanggilan fungsi pengurutan nama ascending
+
+    // Input keyword nama yang ingin dicari
+    printf("Masukkan Nama mahasiswa yang datanya ingin dicari: ");
+	scanf("%s", &cari);
+
+	kiri = 0;
+    kanan = indexBaru - 1;
+
+    int flag = 0;
+
+    // Looping binary search
+	while (kiri <= kanan && flag == 0) {
+        tengah = (kiri + kanan) / 2;
+        if (strcmp(mhs[tengah].nama, cari) == 0) {
+            flag = 1;
+            break;
+        }
+        else if (strcmp(cari, mhs[tengah].nama) < 0) {
+            kanan = tengah -1;
+        }
+        else
+            kiri = tengah + 1;
+	}
+
+    // Pengecekan apakah flag sudah terpenuhi (data sudah ketemu)
+	if (flag == 1) {
+        printf("Data mahasiswa ditemukan!\n\n");
+        printf("NPM Mahasiswa : %s \n", mhs[tengah].npm);
+        printf("Nama Mahasiswa : %s \n", mhs[tengah].nama);
+        printf("Program Studi Mahasiswa : %s \n", mhs[tengah].prodi);
+        printf("Fakultas Mahasiswa : %s \n", mhs[tengah].fakultas);
+        printf("Semester Mahasiswa : %d \n", mhs[tengah].akademik.semester);
+        printf("IPK Mahasiswa : %f \n", mhs[tengah].akademik.ipk);
+	}
+	else {
+        printf("Data mahasiswa tidak ada! \n");
+	}
+}
+
+// Deklarasi fungsi pencarian menurut nama mahasiswa dengan binary search urutan descending
+void binaryNamaDescen() {
+    char cari[20];
+    int kiri, kanan, tengah; // Deklarasi variabel untuk binary search
+
+    namaInsertionDescen(); // Pemanggilan fungsi pengurutan nama descending
+
+    // Input keyword nama yang ingin dicari
+    printf("Masukkan Nama mahasiswa yang datanya ingin dicari: ");
+	scanf("%s", &cari);
+
+	kiri = 0;
+    kanan = indexBaru - 1;
+
+    int flag = 0;
+
+    // Looping binary search
+	while (kiri <= kanan && flag == 0) {
+        tengah = (kiri + kanan) / 2;
+        if (strcmp(mhs[tengah].nama, cari) == 0) {
+            flag = 1;
+            break;
+        }
+        else if (strcmp(cari, mhs[tengah].nama) > 0) {
+            kanan = tengah -1;
+        }
+        else
+            kiri = tengah + 1;
+	}
+
+	// Pengecekan apakah flag sudah terpenuhi (data sudah ketemu)
 	if (flag == 1) {
         printf("Data mahasiswa ditemukan!\n\n");
         printf("NPM Mahasiswa : %s \n", mhs[tengah].npm);

@@ -16,7 +16,7 @@ struct datamhs {
 	char fakultas[20];
 	char prodi[20];
 	akademik akademik;
-} mhs[80];
+} mhs[80], tukar;
 
 // Deklarasi integer indexBaru untuk menampung index jumlah data
 int indexBaru = 0;
@@ -298,16 +298,15 @@ void tampilDataUrut() {
 // Deklarasi fungsi untuk bubble sort npm ascending
 void npmBubbleAscen() {
 	int i, j;
-	char tukar[20];
 
 	// Looping bubble sort
 	for (i = indexBaru - 1; i > 0; i--) {
 		for (j = indexBaru - 1; j >= indexBaru - i; j--) {
 			// Dikarenakan variabel bertipe char maka menggunakan strcmp untuk perbandingan
 			if (strcmp(mhs[j].npm, mhs[j-1].npm) < 0) {
-				strcpy(tukar, mhs[j].npm); // Untuk penukaran nilai menggunakan strcpy
-				strcpy(mhs[j].npm, mhs[j-1].npm);
-				strcpy(mhs[j-1].npm, tukar);
+				tukar = mhs[j];
+				mhs[j] = mhs[j-1];
+				mhs[j-1] = tukar;
 			}
 		}
 	}
@@ -316,16 +315,15 @@ void npmBubbleAscen() {
 // Deklarasi fungsi untuk bubble sort npm descending
 void npmBubbleDescen() {
 	int i, j;
-	char tukar[20];
 
 	// Looping bubble sort
 	for (i = indexBaru - 1; i > 0; i--) {
 		for (j = indexBaru - 1; j >= indexBaru - i; j--) {
 			// Dikarenakan variabel bertipe char maka menggunakan strcmp untuk perbandingan
 			if (strcmp(mhs[j].npm, mhs[j-1].npm) > 0) {
-				strcpy(tukar, mhs[j].npm); // Untuk penukaran nilai menggunakan strcpy
-				strcpy(mhs[j].npm, mhs[j-1].npm);
-				strcpy(mhs[j-1].npm, tukar);
+				tukar = mhs[j];
+				mhs[j] = mhs[j-1];
+				mhs[j-1] = tukar;
 			}
 		}
 	}
@@ -334,16 +332,15 @@ void npmBubbleDescen() {
 // Deklarasi fungsi untuk bubble sort npm descending
 void namaBubbleAscen() {
 	int i, j;
-	char tukar[20];
 
 	// Looping bubble sort
 	for (i = indexBaru - 1; i > 0; i--) {
 		for (j = indexBaru - 1; j >= indexBaru - i; j--) {
 			// Dikarenakan variabel bertipe char maka menggunakan strcmp untuk perbandingan
 			if (strcmp(mhs[j].nama, mhs[j-1].nama) < 0) {
-				strcpy(tukar, mhs[j].nama); // Untuk penukaran nilai menggunakan strcpy
-				strcpy(mhs[j].nama, mhs[j-1].nama);
-				strcpy(mhs[j-1].nama, tukar);
+				tukar = mhs[j];
+				mhs[j] = mhs[j-1];
+				mhs[j-1] = tukar;
 			}
 		}
 	}
@@ -352,16 +349,15 @@ void namaBubbleAscen() {
 // Deklarasi fungsi untuk bubble sort npm descending
 void namaBubbleDescen() {
 	int i, j;
-	char tukar[20];
 
 	// Looping bubble sort
 	for (i = indexBaru - 1; i > 0; i--) {
 		for (j = indexBaru - 1; j >= indexBaru - i; j--) {
 			// Dikarenakan variabel bertipe char maka menggunakan strcmp untuk perbandingan
 			if (strcmp(mhs[j].nama, mhs[j-1].nama) > 0) {
-				strcpy(tukar, mhs[j].nama); // Untuk penukaran nilai menggunakan strcpy
-				strcpy(mhs[j].nama, mhs[j-1].nama);
-				strcpy(mhs[j-1].nama, tukar);
+				tukar = mhs[j];
+				mhs[j] = mhs[j-1];
+				mhs[j-1] = tukar;
 			}
 		}
 	}
@@ -418,7 +414,6 @@ void urutBubble() {
 // Deklarasi fungsi untuk selection sort npm ascending
 void npmSelectionAscen() {
 	int i, j, minimum;
-	char tukar[20];
 
 	// Looping selection sort
 	for (i = 0; i < (indexBaru-1); i++) {
@@ -430,9 +425,9 @@ void npmSelectionAscen() {
 				minimum = j;
 		}
 		if (minimum != i) {
-			strcpy(tukar, mhs[minimum].npm); // Untuk penukaran nilai menggunakan strcpy
-            strcpy(mhs[minimum].npm, mhs[i].npm);
-            strcpy(mhs[i].npm, tukar);
+            tukar = mhs[minimum];
+            mhs[minimum] = mhs[i];
+            mhs[i] = tukar;
 		}
 	}
 }
@@ -440,7 +435,6 @@ void npmSelectionAscen() {
 // Deklarasi fungsi untuk selection sort npm descending
 void npmSelectionDescen() {
 	int i, j, minimum;
-	char tukar[20];
 
 	// Looping selection sort
 	for (i = 0; i < (indexBaru-1); i++) {
@@ -452,9 +446,9 @@ void npmSelectionDescen() {
 				minimum = j;
 		}
 		if (minimum != i) {
-			strcpy(tukar, mhs[minimum].npm); // Untuk penukaran nilai menggunakan strcpy
-            strcpy(mhs[minimum].npm, mhs[i].npm);
-            strcpy(mhs[i].npm, tukar);
+            tukar = mhs[minimum];
+            mhs[minimum] = mhs[i];
+            mhs[i] = tukar;
 		}
 	}
 }
@@ -462,7 +456,6 @@ void npmSelectionDescen() {
 // Deklarasi fungsi untuk selection sort nama ascending
 void namaSelectionAscen() {
 	int i, j, minimum;
-	char tukar[20];
 
 	// Looping selection sort
 	for (i = 0; i < (indexBaru-1); i++) {
@@ -474,9 +467,9 @@ void namaSelectionAscen() {
 				minimum = j;
 		}
 		if (minimum != i) {
-			strcpy(tukar, mhs[minimum].nama); // Untuk penukaran nilai menggunakan strcpy
-            strcpy(mhs[minimum].nama, mhs[i].nama);
-            strcpy(mhs[i].nama, tukar);
+            tukar = mhs[minimum];
+            mhs[minimum] = mhs[i];
+            mhs[i] = tukar;
 		}
 	}
 }
@@ -484,7 +477,6 @@ void namaSelectionAscen() {
 // Deklarasi fungsi untuk selection sort nama descending
 void namaSelectionDescen() {
 	int i, j, minimum;
-	char tukar[20];
 
 	// Looping selection sort
 	for (i = 0; i < (indexBaru-1); i++) {
@@ -496,9 +488,9 @@ void namaSelectionDescen() {
 				minimum = j;
 		}
 		if (minimum != i) {
-			strcpy(tukar, mhs[minimum].nama); // Untuk penukaran nilai menggunakan strcpy
-            strcpy(mhs[minimum].nama, mhs[i].nama);
-            strcpy(mhs[i].nama, tukar);
+            tukar = mhs[minimum];
+            mhs[minimum] = mhs[i];
+            mhs[i] = tukar;
 		}
 	}
 }
@@ -554,76 +546,76 @@ void urutSelection() {
 // Deklarasi fungsi untuk insertion sort npm ascending
 void npmInsertionAscen() {
 	int i, j;
-	char kunci[20];
 
 	// Looping insertion sort
 	for (i = 1; i < indexBaru; i++) {
-		strcpy(kunci, mhs[i].npm);
-		j = i - 1;
+		j = i;
 
 		// Looping pengurutan nilai
-		while (j >= 0 && strcmp(mhs[j].npm, kunci) > 0) {
-			strcpy(mhs[j + 1].npm, mhs[j].npm);
-			j = j - 1;
+		while (j > 0 && strcmp(mhs[j].npm, mhs[j-1].npm) < 0) {
+			tukar = mhs[j];
+			mhs[j] = mhs[j-1];
+			mhs[j-1] = tukar;
+
+			j--;
 		}
-		strcpy(mhs[j + 1].npm, kunci);
 	}
 }
 
 // Deklarasi fungsi untuk insertion sort npm descending
 void npmInsertionDescen() {
 	int i, j;
-	char kunci[20];
 
 	// Looping insertion sort
 	for (i = 1; i < indexBaru; i++) {
-		strcpy(kunci, mhs[i].npm);
-		j = i - 1;
+		j = i;
 
 		// Looping pengurutan nilai
-		while (j >= 0 && strcmp(mhs[j].npm, kunci) < 0) {
-			strcpy(mhs[j + 1].npm, mhs[j].npm);
-			j = j - 1;
+		while (j > 0 && strcmp(mhs[j].npm, mhs[j-1].npm) > 0) {
+			tukar = mhs[j];
+			mhs[j] = mhs[j-1];
+			mhs[j-1] = tukar;
+
+			j--;
 		}
-		strcpy(mhs[j + 1].npm, kunci);
 	}
 }
 
 // Deklarasi fungsi untuk insertion sort nama ascending
 void namaInsertionAscen() {
 	int i, j;
-	char kunci[20];
 
 	// Looping insertion sort
 	for (i = 1; i < indexBaru; i++) {
-		strcpy(kunci, mhs[i].nama);
-		j = i - 1;
+		j = i;
 
 		// Looping pengurutan nilai
-		while (j >= 0 && strcmp(mhs[j].nama, kunci) > 0) {
-			strcpy(mhs[j + 1].nama, mhs[j].nama);
-			j = j - 1;
+		while (j > 0 && strcmp(mhs[j].nama, mhs[j-1].nama) < 0) {
+			tukar = mhs[j];
+			mhs[j] = mhs[j-1];
+			mhs[j-1] = tukar;
+
+			j--;
 		}
-		strcpy(mhs[j + 1].nama, kunci);
 	}
 }
 
 // Deklarasi fungsi untuk insertion sort nama descending
 void namaInsertionDescen() {
 	int i, j;
-	char kunci[20];
 
 	// Looping insertion sort
 	for (i = 1; i < indexBaru; i++) {
-		strcpy(kunci, mhs[i].nama);
-		j = i - 1;
+		j = i;
 
 		// Looping pengurutan nilai
-		while (j >= 0 && strcmp(mhs[j].nama, kunci) < 0) {
-			strcpy(mhs[j + 1].nama, mhs[j].nama);
-			j = j - 1;
+		while (j > 0 && strcmp(mhs[j].nama, mhs[j-1].nama) > 0) {
+			tukar = mhs[j];
+			mhs[j] = mhs[j-1];
+			mhs[j-1] = tukar;
+
+			j--;
 		}
-		strcpy(mhs[j + 1].nama, kunci);
 	}
 }
 
