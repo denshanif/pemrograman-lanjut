@@ -194,7 +194,7 @@ void tampilDataUrut() {
     printf("LEVEL PPKM\tNAMA KABUPATEN/KOTA\tNAMA PROVINSI\n\n");
 
     for(i = 0; i < jumlahData; i++) {
-        printf("%s\t\t%s\t\t%s\n", dataVaksinasi[i].levelPPKM, dataVaksinasi[i].daerah.kota, dataVaksinasi[i].daerah.provinsi);
+        printf("%s\t\t%s\t\t\t%s\n", dataVaksinasi[i].levelPPKM, dataVaksinasi[i].daerah.kota, dataVaksinasi[i].daerah.provinsi);
     }
 }
 
