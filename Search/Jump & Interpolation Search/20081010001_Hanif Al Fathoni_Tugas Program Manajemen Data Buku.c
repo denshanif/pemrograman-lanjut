@@ -10,8 +10,8 @@ struct dataBuku {
     char namaPengarang[15];
 } dataBuku[10], tukar;
 
-// Deklarasi konstanta integer untuk jumlah data buku
-const int jumlahData = 10;
+// Deklarasi variabel untuk jumlah data buku
+int jumlahData = sizeof(dataBuku) / sizeof(dataBuku[0]);
 
 // Deklarasi Fungsi
 void tampilBuku();
