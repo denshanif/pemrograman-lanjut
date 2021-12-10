@@ -4,7 +4,7 @@
 #include <stdlib.h>
 
 struct data_barang{
-    char *nama[20], *kategori[20];
+    char *nama[25], *kategori[25];
     int harga, kode;
 };
 
